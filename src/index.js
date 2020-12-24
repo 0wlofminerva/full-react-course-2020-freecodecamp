@@ -1,20 +1,20 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
 
-// nested Components, React Tools
+// CSS
+import './index.css';
 
-function Greeting() {
+import { data } from './books';
+import SpecificBook from './Book';
+
+function BookList() {
 	return (
-		<div>
-			<Person />
-			<Message />
-		</div>
+		<section className="booklist">
+			{data.map((book, index) => {
+				return <SpecificBook key={book.id} {...book}></SpecificBook>;
+			})}
+		</section>
 	);
 }
 
-const Person = () => <h2>john doe</h2>;
-const Message = () => {
-	return <p>this is my message</p>;
-};
-
-ReactDom.render(<Greeting />, document.getElementById('root'));
+ReactDom.render(<BookList />, document.getElementById('root'));
